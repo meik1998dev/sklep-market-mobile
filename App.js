@@ -1,29 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Header } from './components/Header';
-import ProductsList from './components/ProductsList';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Home } from './screens/Home';
+import { ProductDetails } from './screens/ProductDetails';
 import Colors from './constants/Colors';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
    return (
-      <>
-      <Header/>
-         <View style={styles.container}>
-            <ProductsList/>
-            <StatusBar style='auto' />
-         </View>
-      </>
+      <NavigationContainer>
+         <Stack.Navigator
+            screenOptions={{
+               headerStyle: {
+                  backgroundColor: 'white',
+               },
+               headerTintColor: Colors.navy,
+               headerTitleStyle: {
+                  fontWeight: 'bold',
+               },
+            }}>
+            <Stack.Screen
+               name='Home'
+               options={{
+                  title: 'Sklep Market',
+               }}
+               component={Home}
+            />
+            <Stack.Screen
+               name='ProductDetails'
+               options={{ title: 'Product Details' }}
+               component={ProductDetails}
+            />
+         </Stack.Navigator>
+      </NavigationContainer>
    );
 }
-
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: Colors.white,
-      alignItems: 'center',
-      justifyContent: 'center',
-   },
-   text: {
-      color: Colors.red,
-   },
-});

@@ -1,11 +1,24 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Colors from '../constants/Colors';
+import { useNavigation } from '@react-navigation/native';
 
 export const ProductCard = ({ productData }) => {
+   const navigation = useNavigation();
+
    return (
       <View style={styles.card}>
-         <Image resizeMode='center' style={styles.image} source={{ uri: productData.image }} />
+         <TouchableOpacity
+         style={styles.imageContainer}
+            onPress={() => navigation.navigate('ProductDetails' , {
+               productId : productData.id
+            })}>
+            <Image
+               resizeMode='center'
+               style={styles.image}
+               source={{ uri: productData.image }}
+            />
+         </TouchableOpacity>
          <View style={styles.textContainer}>
             <Text>{productData.title.slice(0, 30)}</Text>
          </View>
@@ -37,16 +50,20 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flex: 1,
    },
-   price:{
+   price: {
       position: 'absolute',
       right: 5,
       bottom: 5,
       color: Colors.navy,
       opacity: 0.6,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
    },
    image: {
+      width:"100%",
+      height: "100%"
+   },
+   imageContainer:{
       width: '100%',
       height: '60%',
-   },
+   }
 });
