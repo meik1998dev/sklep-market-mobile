@@ -28,7 +28,7 @@ const ProductsList = () => {
             <ActivityIndicator />
          ) : (
             <FlatList
-               style={styles.productsList}
+               contentContainerStyle={styles.productsList}
                data={data}
                numColumns={2}
                renderItem={({ item }) => <ProductCard productData={item} />}
@@ -40,12 +40,9 @@ const ProductsList = () => {
 
 const styles = StyleSheet.create({
    productsList: {
+      alignItems: "center"
    },
-   container: {
-      width: '100%',
-      alignItems:'center'
-
-   },
+   container: { width: '100%' },
 });
 
 export default ProductsList;
