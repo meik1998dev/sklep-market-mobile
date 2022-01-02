@@ -13,11 +13,11 @@ export const Header = () => {
 const styles = StyleSheet.create({
    header: {
       backgroundColor: Colors.navy,
-      padding: 30,
+      padding: 20,
    },
    title: {
       color: Colors.white,
       fontSize: 20,
-      marginTop: 20,
+      marginTop: 40,
    },
 });
